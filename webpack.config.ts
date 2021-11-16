@@ -1,6 +1,4 @@
 import { Configuration, ProvidePlugin } from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import path from "path";
 
@@ -23,11 +21,13 @@ const config = <Configuration>{
         use: {
           loader: "babel-loader",
           options: {
-            
             presets: [
               "@babel/preset-env",
               "@babel/preset-react",
-              ["@babel/preset-typescript", { allowDeclareFields: true }],
+              [
+                "@babel/preset-typescript",
+                { allowDeclareFields: true, preserveConstEnums: true },
+              ],
             ],
             plugins: ["@babel/plugin-transform-runtime"],
           },
@@ -57,10 +57,6 @@ const config = <Configuration>{
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "src/ui/index.html",
-      inject: true,
-    }),
     new ProvidePlugin({
       React: "react",
     }),

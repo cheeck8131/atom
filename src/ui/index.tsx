@@ -1,6 +1,9 @@
-export {};
+import { render } from "react-dom";
 
-type A = number;
+const App = () => {
+  return <div>Hello world</div>;
+};
 
+console.log("123");
 
-let a: A = 123;
+render(<App />, document.getElementById("root"));
